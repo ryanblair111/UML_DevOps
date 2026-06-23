@@ -66,6 +66,12 @@ pipeline {
 
     }
         post {
+	    failure {
+	        echo 'Pipeline failure'
+	    }
+	    success {
+		echo 'Pipeline ran perfectly'
+	    }
             always {
                 publishHTML (
                     target: [
