@@ -33,7 +33,7 @@ pipeline {
         
         stage ('Run checkstyle and code coverage tests when java file changed') {
                 when {
-		    changeset "Chapter08/sample1/**/*.java"
+		    changeset "**/*.java"
 		}		
 		steps {
                     sh """
