@@ -52,6 +52,20 @@ pipeline {
                 )
             }
         }
+
+        stage ('Fail build if other branch') {
+            when {
+                not {
+                    anyOf {
+                        branch 'main'
+                        branch '*feature*'
+                    }
+                }
+            }
+            steps {
+                error("Build failed because it is not a main or feature branch")
+            }
+        }
         
     }
     post {
