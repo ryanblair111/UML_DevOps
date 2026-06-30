@@ -54,13 +54,12 @@ pipeline {
         }
         
     }
-}
-
-post {
+    post {
 	    failure {
 	        echo 'Pipeline failure'
 	    }
 	    success {
 		    echo 'Pipeline ran perfectly'
 	    }
+    }
 }
