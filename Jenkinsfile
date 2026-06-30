@@ -27,7 +27,7 @@ pipeline {
         }
 
         stage ('Run tests other than CodeCoverage on feature branches') {
-            when { branch '*feature*' }
+            when { branch 'feature*' }
             steps {
                 sh """
                 cd Chapter08/sample1
