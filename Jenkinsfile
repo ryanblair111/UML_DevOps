@@ -20,6 +20,7 @@ pipeline {
             steps {
                 sh """
                 cd Chapter08/sample1
+                chmod +x gradlew
                 ./gradlew jacocoTestCoverageVerification
                 """
             }
@@ -30,6 +31,7 @@ pipeline {
             steps {
                 sh """
                 cd Chapter08/sample1
+                chmod +x gradlew
                 ./gradlew test
                 ./gradlew jacocoTestReport
                 ./gradlew checkstyleMain
