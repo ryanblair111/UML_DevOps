@@ -1,0 +1,20 @@
+agent { label 'docker-agent' }
+
+stages {
+	stage('prepare environment') {
+		when { branch 'main' }
+		steps {
+			ecdho 'all branches'
+		}
+	}
+	
+	stage{
+		when {
+			not {branch 'main' }
+		}
+		steps {
+			echo 'Unit test not main branch'
+		}
+
+	}
+}
