@@ -1,4 +1,4 @@
-RB - Exercise 6 - Dev Branch - Pull request to main branch
+RB - Exercise 6 - Dev Branch - Pull request to main branch #2
 
 Updated readme 6/30/26
 
