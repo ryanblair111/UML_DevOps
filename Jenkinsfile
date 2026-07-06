@@ -27,7 +27,12 @@ pipeline {
         }
 
         stage ('Run tests other than CodeCoverage on feature branches') {
-            when { branch pattern: "feature-\\d+", comparator: "REGEXP" }
+            when { 
+                anyof { 
+                    branch pattern: "feature-\\d+", comparator: "REGEXP" 
+                    expression { env.CHANGE_BRANCH ==~ /feature-\d+/ }
+                    }
+            }
             steps {
                 sh """
                 cd Chapter08/sample1
