@@ -16,7 +16,11 @@ pipeline {
         }*/
 
         stage ('Run CodeCoverage test if main branch') {
-            when { branch 'main'}
+            when { 
+                anyOf {
+                    branch 'main'
+                    expression { env.CHANGE_BRANCH == 'main'}
+                    }
             steps {
                 sh """
                 cd Chapter08/sample1
@@ -62,8 +66,8 @@ pipeline {
             when {
                 not {
                     anyOf {
-                        branch 'main'
-                        branch pattern: "feature-\\d+", comparator: "REGEXP"
+                        branch pattern: "feature-\\d+", comparator: "REGEXP" 
+                        expression { env.CHANGE_BRANCH ==~ /feature-\d+/ }
                     }
                 }
             }
