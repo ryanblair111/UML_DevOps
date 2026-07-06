@@ -21,6 +21,7 @@ pipeline {
                     branch 'main'
                     expression { env.CHANGE_BRANCH == 'main'}
                     }
+            }
             steps {
                 sh """
                 cd Chapter08/sample1
