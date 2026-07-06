@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 RB - updated README on feature-123 branch
+=======
+RB - Exercise 6 - Dev Branch - Pull request to main branch
+>>>>>>> d4611252be17483fb169fe86f3d4554257f246f8
 
 Updated readme 6/30/26
 
