@@ -69,6 +69,9 @@ pipeline {
                     anyOf {
                         branch pattern: "feature-\\d+", comparator: "REGEXP" 
                         expression { env.CHANGE_BRANCH ==~ /feature-\d+/ }
+                        branch 'main'
+                        expression { env.CHANGE_BRANCH == 'main'}
+
                     }
                 }
             }
