@@ -15,7 +15,7 @@ pipeline {
             }
         }*/
 
-        stage ('Run CodeCoverage test if main branch') {
+        stage ('Run CodeCoverage test plus others if main branch') {
             when { 
                 anyOf {
                     branch 'main'
@@ -79,12 +79,28 @@ pipeline {
                         reportName: "JaCoCo Checkstyle"
                         ]
                 )
+                //set build to receive an error
+                error("Build failed")
             }
         }
         
     }
     post {
 	    failure {
+                publishHTML (
+                    target: [
+                        reportDir: 'Chapter08/sample1/build/reports/tests/test',
+                        reportFiles: 'index.html',
+                        reportName: "JaCoCo Report"
+                    ]
+                )
+                publishHTML (
+                    target: [
+                        reportDir: 'Chapter08/sample1/build/reports/checkstyle',
+                        reportFiles: 'main.html',
+                        reportName: "JaCoCo Checkstyle"
+                        ]
+                )
 	        echo 'Tests fail!'
 	    }
 	    success {
