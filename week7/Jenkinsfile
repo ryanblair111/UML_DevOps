@@ -80,13 +80,27 @@ pipeline {
                         ]
                 )
                 //set build to receive an error
-                error("Build failed because it is not a main or feature branch")
+                error("Build failed")
             }
         }
         
     }
     post {
 	    failure {
+                publishHTML (
+                    target: [
+                        reportDir: 'Chapter08/sample1/build/reports/tests/test',
+                        reportFiles: 'index.html',
+                        reportName: "JaCoCo Report"
+                    ]
+                )
+                publishHTML (
+                    target: [
+                        reportDir: 'Chapter08/sample1/build/reports/checkstyle',
+                        reportFiles: 'main.html',
+                        reportName: "JaCoCo Checkstyle"
+                        ]
+                )
 	        echo 'Tests fail!'
 	    }
 	    success {
