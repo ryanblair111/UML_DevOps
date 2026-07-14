@@ -79,6 +79,8 @@ pipeline {
                         reportName: "JaCoCo Checkstyle"
                         ]
                 )
+                //set build to receive an error
+                error("Build failed because it is not a main or feature branch")
             }
         }
         
