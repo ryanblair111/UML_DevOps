@@ -15,7 +15,7 @@ pipeline {
             }
         }*/
 
-        stage ('Run CodeCoverage test if main branch') {
+        stage ('Run CodeCoverage test plus others if main branch') {
             when { 
                 anyOf {
                     branch 'main'
