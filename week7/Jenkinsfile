@@ -31,12 +31,14 @@ pipeline {
             }
         }
 
-        stage ('Run tests other than CodeCoverage on feature branches') {
+        stage ('Run tests other than CodeCoverage on other branches') {
             when { 
-                anyOf { 
-                    branch pattern: "feature-\\d+", comparator: "REGEXP" 
-                    expression { env.CHANGE_BRANCH ==~ /feature-\d+/ }
+                not {
+                    anyOf { 
+                        branch 'main'
+                        expression { env.CHANGE_BRANCH == 'main'}
                     }
+                }
             }
             steps {
                 sh """
@@ -60,23 +62,6 @@ pipeline {
                         reportName: "JaCoCo Checkstyle"
                         ]
                 )
-            }
-        }
-
-        stage ('Fail build if other branch') {
-            when {
-                not {
-                    anyOf {
-                        branch pattern: "feature-\\d+", comparator: "REGEXP" 
-                        expression { env.CHANGE_BRANCH ==~ /feature-\d+/ }
-                        branch 'main'
-                        expression { env.CHANGE_BRANCH == 'main'}
-
-                    }
-                }
-            }
-            steps {
-                error("Build failed because it is not a main or feature branch")
             }
         }
         
